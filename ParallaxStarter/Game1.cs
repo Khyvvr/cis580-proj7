@@ -53,7 +53,50 @@ namespace ParallaxStarter
             player = new Player(spritesheet);
 
             var rock = Content.Load<Texture2D>("rock");
-            rocks.Add(new Rock(rock, new Vector2(400, 200)));
+            rocks.Add(new Rock(rock, new Vector2(350, 200)));
+            rocks.Add(new Rock(rock, new Vector2(450, 300)));
+            rocks.Add(new Rock(rock, new Vector2(500, 0)));
+
+            rocks.Add(new Rock(rock, new Vector2(1000, 0)));
+            rocks.Add(new Rock(rock, new Vector2(1200, 200)));
+
+            rocks.Add(new Rock(rock, new Vector2(1400, 300)));
+            rocks.Add(new Rock(rock, new Vector2(1500, 200)));
+            rocks.Add(new Rock(rock, new Vector2(1600, 0)));
+
+            rocks.Add(new Rock(rock, new Vector2(1400, 300)));
+            rocks.Add(new Rock(rock, new Vector2(1500, 200)));
+            rocks.Add(new Rock(rock, new Vector2(1600, 0)));
+
+            rocks.Add(new Rock(rock, new Vector2(1800, 150)));
+            rocks.Add(new Rock(rock, new Vector2(1900, 50)));
+            rocks.Add(new Rock(rock, new Vector2(2000, 225)));
+
+            rocks.Add(new Rock(rock, new Vector2(2500, 100)));
+            rocks.Add(new Rock(rock, new Vector2(2700, 225)));
+            rocks.Add(new Rock(rock, new Vector2(2800, 275)));
+
+            rocks.Add(new Rock(rock, new Vector2(3100, 0)));
+            rocks.Add(new Rock(rock, new Vector2(3150, 225)));
+            rocks.Add(new Rock(rock, new Vector2(3300, 300)));
+
+            rocks.Add(new Rock(rock, new Vector2(3800, 275)));
+            rocks.Add(new Rock(rock, new Vector2(4200, 150)));
+            rocks.Add(new Rock(rock, new Vector2(4400, 50)));
+
+            rocks.Add(new Rock(rock, new Vector2(4750, 100)));
+            rocks.Add(new Rock(rock, new Vector2(4900, 50)));
+            rocks.Add(new Rock(rock, new Vector2(5000, 200)));
+            rocks.Add(new Rock(rock, new Vector2(5100, 150)));
+
+            rocks.Add(new Rock(rock, new Vector2(5350, 200)));
+            rocks.Add(new Rock(rock, new Vector2(5450, 75)));
+            rocks.Add(new Rock(rock, new Vector2(5550, 150)));
+            rocks.Add(new Rock(rock, new Vector2(5650, 225)));
+
+            rocks.Add(new Rock(rock, new Vector2(9500, 150)));
+            rocks.Add(new Rock(rock, new Vector2(9600, 100)));
+            rocks.Add(new Rock(rock, new Vector2(9800, 0)));
 
             var rockLayer = new ParallaxLayer(this);
             foreach (Rock r in rocks)

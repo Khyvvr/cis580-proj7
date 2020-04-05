@@ -48,7 +48,7 @@ namespace ParallaxStarter
         /// <summary>
         /// How fast the player moves
         /// </summary>
-        public float Speed { get; set; } = 250;
+        public float Speed { get; set; } = 400;
 
         /// <summary>
         /// Constructs a player
@@ -57,7 +57,7 @@ namespace ParallaxStarter
         public Player(Texture2D spritesheet)
         {
             this.spritesheet = spritesheet;
-            this.Position = new Vector2(200, 200);
+            this.Position = new Vector2(9200, 200);
 
             boundary = new BoundingRectangle(this.Position.X, this.Position.Y, sourceRect.Width / 2, sourceRect.Height * 2);
         }
