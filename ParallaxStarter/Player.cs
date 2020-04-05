@@ -17,6 +17,8 @@ namespace ParallaxStarter
         /// </summary>
         Texture2D spritesheet;
 
+        public BoundingRectangle boundary;
+
         /// <summary>
         /// The portion of the spritesheet that is the helicopter
         /// </summary>
@@ -46,7 +48,7 @@ namespace ParallaxStarter
         /// <summary>
         /// How fast the player moves
         /// </summary>
-        public float Speed { get; set; } = 100;
+        public float Speed { get; set; } = 250;
 
         /// <summary>
         /// Constructs a player
@@ -56,6 +58,8 @@ namespace ParallaxStarter
         {
             this.spritesheet = spritesheet;
             this.Position = new Vector2(200, 200);
+
+            boundary = new BoundingRectangle(this.Position.X, this.Position.Y, sourceRect.Width / 2, sourceRect.Height * 2);
         }
 
         /// <summary>
@@ -99,6 +103,9 @@ namespace ParallaxStarter
 
             // Move the helicopter
             Position += (float)gameTime.ElapsedGameTime.TotalSeconds * Speed * direction;
+
+            boundary.X = Position.X - 30;
+            boundary.Y = Position.Y;
         }
 
         /// <summary>

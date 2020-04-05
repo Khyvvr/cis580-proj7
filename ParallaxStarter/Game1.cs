@@ -14,6 +14,9 @@ namespace ParallaxStarter
         SpriteBatch spriteBatch;
 
         Player player;
+        List<Rock> rocks = new List<Rock>();
+
+        lossScreen loss = new lossScreen();
 
         public Game1()
         {
@@ -44,8 +47,23 @@ namespace ParallaxStarter
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            loss.LoadContent(Content);
+
             var spritesheet = Content.Load<Texture2D>("helicopter");
             player = new Player(spritesheet);
+
+            var rock = Content.Load<Texture2D>("rock");
+            rocks.Add(new Rock(rock, new Vector2(400, 200)));
+
+            var rockLayer = new ParallaxLayer(this);
+            foreach (Rock r in rocks)
+            {
+                rockLayer.Sprites.Add(r);
+            }
+            rockLayer.DrawOrder = 2;
+            Components.Add(rockLayer);
+
+
 
             var backgroundTexture = Content.Load<Texture2D>("background");
             var backgroundSprite = new StaticSprite(backgroundTexture);
@@ -117,6 +135,7 @@ namespace ParallaxStarter
             backgroundLayer.ScrollController = new PlayerTrackingScrollController(player, 0.1f);
             midgroundLayer.ScrollController = new PlayerTrackingScrollController(player, 0.4f);
             playerLayer.ScrollController = new PlayerTrackingScrollController(player, 1.0f);
+            rockLayer.ScrollController = new PlayerTrackingScrollController(player, 1.0f);
             foregroundLayer.ScrollController = new PlayerTrackingScrollController(player, 1.0f);
         }
 
@@ -154,7 +173,14 @@ namespace ParallaxStarter
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-            
+            foreach (Rock r in rocks)
+            {
+                if (player.boundary.CollidesWith(r.boundary))
+                {
+                    // draw lose screen
+                    loss.Draw(spriteBatch);
+                }
+            }
 
             base.Draw(gameTime);
         }
