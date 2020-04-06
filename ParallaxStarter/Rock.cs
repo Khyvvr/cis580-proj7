@@ -12,7 +12,6 @@ namespace ParallaxStarter
     public class Rock : ISprite
     {
         Texture2D texture;
-        Texture2D boundaryTexture;
         public BoundingRectangle boundary;
 
         Rectangle sourceRect = new Rectangle
@@ -37,7 +36,6 @@ namespace ParallaxStarter
 
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            // not quite sure if this is right
             spriteBatch.Draw(texture, Position, sourceRect, Color.White);
         }
 
