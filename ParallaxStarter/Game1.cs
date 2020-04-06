@@ -17,6 +17,10 @@ namespace ParallaxStarter
         List<Rock> rocks = new List<Rock>();
 
         lossScreen loss = new lossScreen();
+        WinScreen win = new WinScreen();
+
+        bool lost = false;
+        bool won = false;
 
         public Game1()
         {
@@ -48,6 +52,7 @@ namespace ParallaxStarter
 
             // TODO: use this.Content to load your game content here
             loss.LoadContent(Content);
+            win.LoadContent(Content);
 
             var spritesheet = Content.Load<Texture2D>("helicopter");
             player = new Player(spritesheet);
@@ -97,6 +102,30 @@ namespace ParallaxStarter
             rocks.Add(new Rock(rock, new Vector2(9500, 150)));
             rocks.Add(new Rock(rock, new Vector2(9600, 100)));
             rocks.Add(new Rock(rock, new Vector2(9800, 0)));
+
+            rocks.Add(new Rock(rock, new Vector2(10400, 250)));
+            rocks.Add(new Rock(rock, new Vector2(10500, 150)));
+            rocks.Add(new Rock(rock, new Vector2(10600, 100)));
+            rocks.Add(new Rock(rock, new Vector2(10750, 125)));
+
+            rocks.Add(new Rock(rock, new Vector2(11000, 0)));
+            rocks.Add(new Rock(rock, new Vector2(11100, 75)));
+            rocks.Add(new Rock(rock, new Vector2(11200, 75)));
+            rocks.Add(new Rock(rock, new Vector2(11300, 75)));
+
+            rocks.Add(new Rock(rock, new Vector2(11500, 250)));
+            rocks.Add(new Rock(rock, new Vector2(11600, 100)));
+            rocks.Add(new Rock(rock, new Vector2(11700, 100)));
+            rocks.Add(new Rock(rock, new Vector2(11800, 100)));
+            rocks.Add(new Rock(rock, new Vector2(11900, 100)));
+
+            rocks.Add(new Rock(rock, new Vector2(12200, 90)));
+            rocks.Add(new Rock(rock, new Vector2(12200, 225)));
+
+            rocks.Add(new Rock(rock, new Vector2(12450, 0)));
+            rocks.Add(new Rock(rock, new Vector2(12300, 225)));
+            rocks.Add(new Rock(rock, new Vector2(12400, 225)));
+            rocks.Add(new Rock(rock, new Vector2(12500, 225)));
 
             var rockLayer = new ParallaxLayer(this);
             foreach (Rock r in rocks)
@@ -204,6 +233,22 @@ namespace ParallaxStarter
             // TODO: Add your update logic here
             player.Update(gameTime);
 
+            foreach (Rock r in rocks)
+            {
+                if (player.boundary.CollidesWith(r.boundary))
+                {
+                    lost = true;
+                }
+            }
+
+            foreach (Rock r in rocks)
+            {
+                if (player.Position.X > r.boundary.X)
+                {
+                    won = true;
+                }
+            }
+
             base.Update(gameTime);
         }
 
@@ -216,13 +261,14 @@ namespace ParallaxStarter
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-            foreach (Rock r in rocks)
+            if (lost == true)
             {
-                if (player.boundary.CollidesWith(r.boundary))
-                {
-                    // draw lose screen
-                    loss.Draw(spriteBatch);
-                }
+                loss.Draw(spriteBatch);
+            }
+            
+            if (won == true)
+            {
+                win.Draw(spriteBatch);
             }
 
             base.Draw(gameTime);

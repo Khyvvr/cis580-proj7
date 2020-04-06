@@ -5,12 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Content;
 
 namespace ParallaxStarter
 {
     public class Rock : ISprite
     {
-        Texture2D spritesheet;
+        Texture2D texture;
+        Texture2D boundaryTexture;
         public BoundingRectangle boundary;
 
         Rectangle sourceRect = new Rectangle
@@ -24,19 +26,19 @@ namespace ParallaxStarter
         Vector2 Position { get; set; }
 
 
-        public Rock(Texture2D spritesheet, Vector2 position)
+        public Rock(Texture2D texture, Vector2 position)
         {
-            this.spritesheet = spritesheet;
+            this.texture = texture;
             this.Position = position;
 
-            boundary = new BoundingRectangle(position.X, position.Y, sourceRect.Width, sourceRect.Height);
+            boundary = new BoundingRectangle(position.X, position.Y, 100, 140);
         }
 
 
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             // not quite sure if this is right
-            spriteBatch.Draw(spritesheet, Position, sourceRect, Color.White);
+            spriteBatch.Draw(texture, Position, sourceRect, Color.White);
         }
 
     }

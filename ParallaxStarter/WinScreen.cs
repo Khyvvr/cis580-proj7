@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace ParallaxStarter
 {
-    public class lossScreen
+    public class WinScreen
     {
         SpriteFont spriteFont;
 
@@ -22,7 +22,7 @@ namespace ParallaxStarter
         {
             spriteBatch.Begin();
             spriteBatch.GraphicsDevice.Clear(Color.Black);
-            spriteBatch.DrawString(spriteFont, "YOU LOSE!", new Vector2(500, 200), Color.Red);
+            spriteBatch.DrawString(spriteFont, "YOU WIN!", new Vector2(12750, 200), Color.Gold);
             spriteBatch.End();
         }
     }
